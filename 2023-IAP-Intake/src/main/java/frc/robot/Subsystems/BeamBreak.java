@@ -13,6 +13,7 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 public class BeamBreak extends SubsystemBase {
   /** Creates a new beamBreak. */
 
+  //Crreate variables and set them with values 
   Timer timer = new Timer();
   double seconds;
   DigitalInput beamBreak = new DigitalInput(Constants.BallHandlerPorts.beamBreakPort);
@@ -31,16 +32,20 @@ public class BeamBreak extends SubsystemBase {
   @Override
   public void periodic() {
     // This method will be called once per scheduler run
+    //if it get the sensor, the timer will start 
     if(getSensor()){
       timer.start();
     }
 
+    //record the sensor timer in seconds 
     if(getSecondSensor()){
+      //if the timer is start 
       if(timer.get() > 0){
+        //record the timer in second 
         seconds = timer.get();
       }
-      timer.stop();
-      timer.reset();
+      timer.stop(); //Stop timer
+      timer.reset(); //Reset timer 
     }
 
     SmartDashboard.putBoolean("beamBreak1", getSensor());
